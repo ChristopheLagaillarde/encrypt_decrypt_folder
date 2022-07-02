@@ -16,7 +16,8 @@ warnings.simplefilter('ignore')
 
 
 @jit
-def generate_key_using_password(password: str) -> bytes:
+def generate_key_using_password() -> bytes:
+    password: str = str(input('Please enter the password to get the key : '))
     hashed_password: str = hashlib.sha256(password.encode('utf-8')).hexdigest()
 
     password_in_bytes: bytes = hashed_password.encode()
