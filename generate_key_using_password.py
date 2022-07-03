@@ -11,13 +11,14 @@ from cryptography.hazmat.primitives.kdf.pbkdf2 import PBKDF2HMAC
 from numba import jit
 import warnings
 import hashlib
+import getpass
 
 warnings.simplefilter('ignore')
 
 
 @jit
 def generate_key_using_password() -> bytes:
-    password: str = str(input('Please enter the password to get the key : '))
+    password: str = getpass.getpass('Please enter the password to get the key : ')
     hashed_password: str = hashlib.sha256(password.encode('utf-8')).hexdigest()
 
     password_in_bytes: bytes = hashed_password.encode()
